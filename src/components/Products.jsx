@@ -4,6 +4,7 @@ import { addCart } from "../redux/action";
 import imageMapping from "../pages/ImageMapping";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import apiUrl from "../config";  
 
 import { Link } from "react-router-dom";
 
@@ -19,10 +20,21 @@ const Products = () => {
     dispatch(addCart(product));
   };
 
+  //const apiUrl = process.env.REACT_APP_API_URL_DOTNET;
+  //const apiUrl = process.env.REACT_APP_API_URL_NODEJS;
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://localhost:7273/api/Products/'); // Update with your API URL
+        
+        
+        const response = await fetch(apiUrl+'/'); // Update with your API URL
+
+        //This is .NET 6 API Using Entity Framework 
+        //const response = await fetch('https://localhost:7273/api/Products/'); // Update with your API URL
+
+        //This is NodeJS API Using MongoDB
+        //const response = await fetch('http://localhost:5000/api/products/'); // Update with your API URL
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import { Footer, Navbar } from "../components";
 import imageMapping from "./ImageMapping";
+import apiUrl from "../config"; 
 
 const Product = () => {
   const { id } = useParams();
@@ -21,8 +22,16 @@ const Product = () => {
     const getProduct = async () => {
       setLoading(true);
       try {
-        // Fetch product data from the API
-        const response = await fetch(`https://localhost:7273/api/Products/${id}`);
+
+        //This is .NET 6 API Using Entity Framework 
+        const response = await fetch(`${apiUrl}/${id}`);
+ 
+        //This is .NET 6 API Using Entity Framework 
+        //const response = await fetch('https://localhost:7273/api/Products/${id}'); // Update with your API URL
+
+        // This is Node.JS API with MongoDB
+        //const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        
         if (!response.ok) {
           throw new Error('Product not found');
         }
